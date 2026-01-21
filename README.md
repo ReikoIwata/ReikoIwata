@@ -59,7 +59,7 @@
 
 ### ☁️ Let's Connect!
 <p align="center">
-  <a href="https://twitter.com/your_id"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" /></a>
+  <a href="https://twitter.com/@RIwata0814"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" /></a>
   <a href="your_portfolio_url"><img src="https://img.shields.io/badge/Portfolio-AFEEEE?style=for-the-badge&logo=google-chrome&logoColor=black" /></a>
 </p>
 
