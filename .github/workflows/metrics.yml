@@ -1,0 +1,53 @@
+name: Metrics
+# このワークフローを「いつ実行するか」の定義
+on:
+  schedule: [{cron: "0 0 * * *"}]
+  # 手動実行を許可
+  workflow_dispatch:
+  # mainとmasterにpush が発生したときに実行
+  push: {branches: ["master", "main"]}
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # 1. 基本と継続カレンダー (Activity & Calendar)
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: ReikoIwata
+          template: classic
+          base: header, repositories, metadata
+          plugin_isocalendar: yes # 立体カレンダーを追加
+          plugin_isocalendar_duration: half-year # 半年分表示
+          config_timezone: Asia/Tokyo
+          filename: github-metrics.svg
+
+      # 2. 言語統計 (Languages)
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: ReikoIwata
+          base: ""
+          template: classic
+          filename: github-languages.svg
+          plugin_languages: yes
+          plugin_languages_details: bytes-size, percentage
+          plugin_languages_sections: most-used
+          config_timezone: Asia/Tokyo
+
+      # 3. 最近の活動 (Recent Activity)
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: ReikoIwata
+          base: ""
+          template: classic
+          filename: github-activity.svg
+          plugin_posts: yes
+          plugin_posts_source: dev.to # もしブログ等あれば
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 14
+          config_timezone: Asia/Tokyo
